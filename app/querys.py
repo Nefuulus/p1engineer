@@ -1,11 +1,11 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 
-amazon = pd.read_csv('amazon_prime_titles.csv',dtype = {'show_id': str},delimiter = ',',encoding = "utf-8")
-disney = pd.read_csv('disney_plus_titles.csv',dtype = {'show_id': str},delimiter = ',',encoding = "utf-8")
-hulu = pd.read_csv('hulu_titles.csv',dtype = {'show_id': str},delimiter = ',',encoding = "utf-8")
-netflix = pd.read_json('netflix_titles.json',encoding = "utf-8")
+
+amazon = pd.read_csv('datasets/amazon_prime_titles.csv',dtype = {'show_id': str},delimiter = ',',encoding = "utf-8")
+disney = pd.read_csv('datasets/disney_plus_titles.csv',dtype = {'show_id': str},delimiter = ',',encoding = "utf-8")
+hulu = pd.read_csv('datasets/hulu_titles.csv',dtype = {'show_id': str},delimiter = ',',encoding = "utf-8")
+netflix = pd.read_json('datasets/netflix_titles.json',encoding = "utf-8")
 
 
 amazon["Plataforma"] = "Amazon"
