@@ -1,14 +1,8 @@
-FROM python:3.8.4-slim-buster
-
-COPY . usr/src/app
-WORKDIR /usr/src/app
+FROM tiangolo/uvicorn-gunicorn-fastapi
 
 RUN pip install pandas
 RUN pip install numpy
-RUN pip install -r requirements.txt
 
 EXPOSE 80
 
-
-
-ENTRYPOINT uvicorn --host 0.0.0.0 main:app --reload
+COPY ./app /app

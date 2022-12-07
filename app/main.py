@@ -13,7 +13,7 @@ async def index():
     <title>Proyecto Individual N°1 - Data Engineering</title>
 </head>
 <body>
-    <h1>Guía de Usuario de la API</h1>
+    <h1>Guía de uuuusuario de la API</h1>
     <h3>/get_max_duration/AÑO/PLATAFORMA/TIPO Por ej: /get_max_duration/2020/netflix/min</h3>
     <p>Devuelve la película/serie con mayor duración por plataforma, año y tipo de duración (min o seasons).</p>
     <h3>/get_count_platform/PLATAFORMA Por ej: /get_count_platform/disney</h3>
@@ -34,16 +34,18 @@ async def index():
 
 @app.get("/get_max_duration/{anio}/{plataforma}/{min_o_season}")
 def get_max_duration(anio, plataforma, min_o_season):
+
+    
     if min_o_season == "min":
-        x = movies[(movies["Anio"] == anio) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
-        y = (movies.loc[(movies["Anio"] == anio) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
-        return f' {y} tiene la mayor duracion :, {x}, {min_o_season}'
+        x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
+        y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
+        return f' {y} tiene la mayor duracion : con {x} {min_o_season}'
         
 
     if min_o_season == "season":
-        x = movies[(movies["Anio"] == anio) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
-        y = (movies.loc[(movies["Anio"] == anio) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
-        return f' {y} tiene la mayor duracion :, {x}, {min_o_season}'
+        x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
+        y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
+        return f' {y} tiene la mayor duracion : con {x} {min_o_season}'
     else:
         return f'Datos incorrectos o faltantes para su consulta, intente nuevamente'
 
@@ -128,3 +130,39 @@ def get_listedin(genero):
     return f' El Genero, {genero}, aparece ,{a},veces en Amazon,{b} veces en Hulu, {c} veces en Netflix y {d} veces en Disney'
     
 
+
+@app.get("/get_actor/{plataforma}/{anio}")
+def get_actor(plataforma, anio):
+
+ 
+    lista = []
+
+
+    for i in movies[(movies["Plataforma"] == plataforma) & (movies["Anio"] == int(anio))]["Actores"]:
+        x = list(i.split(","))
+        
+        for n in x:
+            lista.append(n.strip())
+
+
+
+    actoresunicos = []
+    numero=[]
+    mayor = 0
+    for n in lista:
+        if n == "Sin Datos":
+            continue
+        if n  in actoresunicos:
+            indice = actoresunicos.index(n)
+            numero[indice] += 1
+        
+        if not n in actoresunicos:
+            actoresunicos.append(n)
+            numero.append(1)
+        
+
+    for valor in numero:
+        if valor > mayor:
+            mayor = valor
+    actorunico = actoresunicos[numero.index(mayor)]               
+    return f'  La actriz con mas apariciones para el año {int(anio)} en la plataforma {plataforma} es {actorunico} con {mayor} apariciones '
