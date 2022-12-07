@@ -14,12 +14,12 @@ async def index():
 </head>
 <body>
     <h1>Guía de uuuusuario de la API</h1>
-    <h3>/get_max_duration/AÑO/PLATAFORMA/TIPO Por ej: /get_max_duration/2020/netflix/min</h3>
-    <p>Devuelve la película/serie con mayor duración por plataforma, año y tipo de duración (min o seasons).</p>
+    <h3 style = "color: green;>/get_max_duration/AÑO/PLATAFORMA/TIPO Por ej: /get_max_duration/2020/netflix/min</h3>
+    <p style = "color: blue; background-color:lightblue;">Devuelve la película/serie con mayor duración por plataforma, año y tipo de duración (min o seasons).</p>
     <h3>/get_count_platform/PLATAFORMA Por ej: /get_count_platform/disney</h3>
     <p>Devuelve la cantidad de películas y de series por plataforma</p>
     <h3>/get_listedin/GENERO Por ej: /get_listedin/comedy</h3>
-    <p>Devuelve la cantidad de veces que se repite un género y plataforma con mayor frecuencia del mismo.</p>
+    <p style ="color: red; background-color:blue;>Devuelve la cantidad de veces que se repite un género y plataforma con mayor frecuencia del mismo.</p>
     <h3>/get_actor/PLATAFORMA/AÑO Por ej: /get_actor/amazon/2020</h3>
     <p>Devuelve al actor/actriz con mayor número de apariciones según año y plataforma.</p>
     <h3>Luego de realizar alguna consulta, si desea volver a esta guía, elimine los decoradores.</h3>
