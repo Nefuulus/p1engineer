@@ -49,20 +49,22 @@ async def index():
 @app.get("/get_max_duration/{anio}/{plataforma}/{min_o_season}")
 def get_max_duration(anio, plataforma, min_o_season):
 
-    
-    if min_o_season == "min":
-        x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
-        y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
-        return f' {y} tiene la mayor duracion : con {x} {min_o_season}/s para el año {int(anio)} y la plataforma {plataforma}'
-        
+    try:
+        if min_o_season == "min":
+            x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
+            y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
+            return f' {y} tiene la mayor duracion : con {x} {min_o_season}/s para el año {int(anio)} y la plataforma {plataforma}'
+            
 
-    if min_o_season == "season":
-        x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
-        y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
-        return f' {y} tiene la mayor duracion : con {x} {min_o_season}/s para el año {int(anio)} y la plataforma {plataforma}'
-    else:
-        return f'Datos incorrectos o faltantes para su consulta, intente nuevamente'
+        if min_o_season == "season":
+            x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
+            y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
+            return f' {y} tiene la mayor duracion : con {x} {min_o_season}/s para el año {int(anio)} y la plataforma {plataforma}'
+        else:
+            return f'Datos incorrectos o faltantes para su consulta, intente nuevamente'
 
+    except ValueError:
+        return f"La plataforma {plataforma} no posee registros en {anio}"
 
 @app.get("/get_count_platform/{plataforma}")
 def get_count_platform(plataforma):
