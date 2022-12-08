@@ -10,19 +10,32 @@ async def index():
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Individual N°1 - Data Engineering</title>
+    <title>Proyecto Data Engineer Henry</title>
 </head>
 <body>
-    <h1>Guía de usuario de la API</h1>
-    <h3 style = "color: green;">/get_max_duration/AÑO/PLATAFORMA/TIPO Por ej: /get_max_duration/2020/netflix/min</h3>
-    <p style = "color: blue; background-color:lightblue;">Devuelve la película/serie con mayor duración por plataforma, año y tipo de duración (min o seasons).</p>
-    <h3>/get_count_platform/PLATAFORMA Por ej: /get_count_platform/disney</h3>
-    <p>Devuelve la cantidad de películas y de series por plataforma</p>
-    <h3>/get_listedin/GENERO Por ej: /get_listedin/comedy</h3>
-    <p style ="color: red; background-color:blue;">Devuelve la cantidad de veces que se repite un género y plataforma con mayor frecuencia del mismo.</p>
-    <h3>/get_actor/PLATAFORMA/AÑO Por ej: /get_actor/amazon/2020</h3>
-    <p>Devuelve al actor/actriz con mayor número de apariciones según año y plataforma.</p>
-    <h3>Luego de realizar alguna consulta, si desea volver a esta guía, elimine los decoradores.</h3>
+    <h1 style = "color:blue;"> Instrucciones de la API</h1>
+    <h2 >Para realizar consultas se necesita poner lo siguiente:</h2>
+    <h2 style = "color: red;" >www.DIRECCION.com/FUNCION/PARAMETRO1/PARAMETRO2 y asi sucesivamente segun corresponda</h2>
+    <h1 style = "color:blue;"> Primera funcion: Esta funcion devuelve la máxima duración según tipo de film.</h1>
+    <h2 style = "color: green;">Funcion : get_max_duration</h3>
+    <h2 style = "color: green;">Parametro1 : Plataforma (puede ser Neflix, Disney, Hulu o Amazon)</h2>
+    <h2 style = "color: green;">Parametro2 : Año (puede ser entre 1920 y 2021)</h2>
+    <h2 style = "color: red;">Ejemplo : /get_max_duration/Netflix/1931</h2>
+    
+    <h1 style = "color:blue;"> Segunda funcion: Esta funcion devuelve la cantidad de peliculas y series segun la plataforma.</h1>
+    <h2 style = "color: green;">Funcion : get_count_platform</h3>
+    <h2 style = "color: green;">Parametro1 : Plataforma (puede ser Neflix, Disney, Hulu o Amazon)</h2>
+    <h2 style = "color: red;">Ejemplo : /get_count_platform/Disney</h2>
+
+    <h1 style = "color:blue;"> Tercera funcion: Esta funcion devuelve la cantidad de veces que se repite un género y plataforma con mayor fecuencia del mismo.</h1>
+    <h2 style = "color: green;">Funcion : get_listedin</h3>
+    <h2 style = "color: green;">Parametro1 : Genero (puede ser: Comedy, Documentary, Etc)</h2>
+    <h2 style = "color: red;">Ejemplo : /get_listedin/Comedy</h2>
+    <h1 style = "color:blue;"> Cuarta funcion: Esta funcion devuelve el actor que más se repite según plataforma y año.</h1>
+    <h2 style = "color: green;">Funcion : get_actor</h3>
+    <h2 style = "color: green;">Parametro1 : Plataforma (puede ser Neflix, Disney, Hulu o Amazon)</h2>
+    <h2 style = "color: green;">Parametro2 : Año (puede ser entre 1920 y 2021)</h2>
+    <h2 style = "color: red;">Ejemplo : /get_actor/Disney/2019</h2>
 </body>
 </html>"""
 
@@ -39,13 +52,13 @@ def get_max_duration(anio, plataforma, min_o_season):
     if min_o_season == "min":
         x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
         y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
-        return f' {y} tiene la mayor duracion : con {x} {min_o_season}'
+        return f' {y} tiene la mayor duracion : con {x} {min_o_season}/s'
         
 
     if min_o_season == "season":
         x = movies[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma)]["Duracion"].max()
         y = (movies.loc[(movies["Anio"] == int(anio)) & (movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma) & (movies["Duracion"] == x)]["Titulo"]).item()
-        return f' {y} tiene la mayor duracion : con {x} {min_o_season}'
+        return f' {y} tiene la mayor duracion : con {x} {min_o_season}/s'
     else:
         return f'Datos incorrectos o faltantes para su consulta, intente nuevamente'
 
@@ -56,7 +69,9 @@ def get_count_platform(plataforma):
     x =  movies[(movies["Tipo"] == "Movie") & (movies["Plataforma"] == plataforma )]["Titulo"].count()
     y =  movies[(movies["Tipo"] == "TV Show") & (movies["Plataforma"] == plataforma )]["Titulo"].count()
 
-    return f' La plataforma, {plataforma}, tiene ,{x},peliculas y  {y} series'
+    return f' La plataforma {plataforma} tiene : {x} peliculas y {y} series'
+
+    
 
 @app.get("/get_listedin/{genero}")
 
@@ -127,7 +142,7 @@ def get_listedin(genero):
 
         if genero in lista:
             d+=1
-    return f' El Genero, {genero}, aparece ,{a},veces en Amazon,{b} veces en Hulu, {c} veces en Netflix y {d} veces en Disney'
+    return f' El Genero {genero} aparece {a} veces en Amazon, {b} veces en Hulu, {c} veces en Netflix y {d} veces en Disney'
     
 
 
@@ -165,4 +180,4 @@ def get_actor(plataforma, anio):
         if valor > mayor:
             mayor = valor
     actorunico = actoresunicos[numero.index(mayor)]               
-    return f'  La actriz con mas apariciones para el año {int(anio)} en la plataforma {plataforma} es {actorunico} con {mayor} apariciones '
+    return f'La actriz con mas apariciones para el año {int(anio)} en la plataforma {plataforma} es {actorunico} con {mayor} aparicion/es '
