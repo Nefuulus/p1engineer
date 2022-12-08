@@ -18,10 +18,10 @@ async def index():
     <h2 style = "color: red;" >www.DIRECCION.com/FUNCION/PARAMETRO1/PARAMETRO2 y asi sucesivamente segun corresponda</h2>
     <h2 style = "color:blue;"> Primera funcion: Esta funcion devuelve la máxima duración según tipo de film.</h2>
     <h2 style = "color: green;">Funcion : get_max_duration</h3>
-    <h2 style = "color: green;">Parametro1 : Plataforma (puede ser Neflix, Disney, Hulu o Amazon)</h2>
-    <h2 style = "color: green;">Parametro2 : Año (puede ser entre 1920 y 2021)</h2>
+    <h2 style = "color: green;">Parametro1 : Año(puede ser Neflix, Disney, Hulu o Amazon)</h2>
+    <h2 style = "color: green;">Parametro2 : Plataforma (puede ser entre 1920 y 2021)</h2>
     <h2 style = "color: green;">Parametro3 : Min o Season (min es para peliculas, season para series)</h2>
-    <h2 style = "color: red;">Ejemplo : /get_max_duration/Netflix/1931/min</h2>
+    <h2 style = "color: red;">Ejemplo : /get_max_duration/1931/Netflix/min</h2>
     
     <h2 style = "color:blue;"> Segunda funcion: Esta funcion devuelve la cantidad de peliculas y series segun la plataforma.</h2>
     <h2 style = "color: green;">Funcion : get_count_platform</h3>
