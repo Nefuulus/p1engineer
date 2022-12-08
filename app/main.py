@@ -16,22 +16,22 @@ async def index():
     <h1 style = "color:blue;"> Instrucciones de la API</h1>
     <h2 >Para realizar consultas se necesita poner lo siguiente:</h2>
     <h2 style = "color: red;" >www.DIRECCION.com/FUNCION/PARAMETRO1/PARAMETRO2 y asi sucesivamente segun corresponda</h2>
-    <h1 style = "color:blue;"> Primera funcion: Esta funcion devuelve la máxima duración según tipo de film.</h1>
+    <h2 style = "color:blue;"> Primera funcion: Esta funcion devuelve la máxima duración según tipo de film.</h2>
     <h2 style = "color: green;">Funcion : get_max_duration</h3>
     <h2 style = "color: green;">Parametro1 : Plataforma (puede ser Neflix, Disney, Hulu o Amazon)</h2>
     <h2 style = "color: green;">Parametro2 : Año (puede ser entre 1920 y 2021)</h2>
     <h2 style = "color: red;">Ejemplo : /get_max_duration/Netflix/1931</h2>
     
-    <h1 style = "color:blue;"> Segunda funcion: Esta funcion devuelve la cantidad de peliculas y series segun la plataforma.</h1>
+    <h2 style = "color:blue;"> Segunda funcion: Esta funcion devuelve la cantidad de peliculas y series segun la plataforma.</h2>
     <h2 style = "color: green;">Funcion : get_count_platform</h3>
     <h2 style = "color: green;">Parametro1 : Plataforma (puede ser Neflix, Disney, Hulu o Amazon)</h2>
     <h2 style = "color: red;">Ejemplo : /get_count_platform/Disney</h2>
 
-    <h1 style = "color:blue;"> Tercera funcion: Esta funcion devuelve la cantidad de veces que se repite un género y plataforma con mayor fecuencia del mismo.</h1>
+    <h2 style = "color:blue;"> Tercera funcion: Esta funcion devuelve la cantidad de veces que se repite un género y plataforma con mayor fecuencia del mismo.</h2>
     <h2 style = "color: green;">Funcion : get_listedin</h3>
     <h2 style = "color: green;">Parametro1 : Genero (puede ser: Comedy, Documentary, Etc)</h2>
     <h2 style = "color: red;">Ejemplo : /get_listedin/Comedy</h2>
-    <h1 style = "color:blue;"> Cuarta funcion: Esta funcion devuelve el actor que más se repite según plataforma y año.</h1>
+    <h2 style = "color:blue;"> Cuarta funcion: Esta funcion devuelve el actor que más se repite según plataforma y año.</h2>
     <h2 style = "color: green;">Funcion : get_actor</h3>
     <h2 style = "color: green;">Parametro1 : Plataforma (puede ser Neflix, Disney, Hulu o Amazon)</h2>
     <h2 style = "color: green;">Parametro2 : Año (puede ser entre 1920 y 2021)</h2>
