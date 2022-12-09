@@ -36,6 +36,8 @@ Plus: Realizar un deployment de la API en una plataforma "code to cloud" como po
 
 + En el archivo `Dockerfile` se encuentra el entorno containerizado de Docker con FastAPI.
 
++ [Link a mi página de mogenius](https://p1engineer-prod-proyectop1engineer-ktwjiq.mo5.mogenius.io/)
+
 
 
 ## Herramientas utilizadas:
